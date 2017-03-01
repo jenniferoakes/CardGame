@@ -1,5 +1,5 @@
 
-
+//created an array
 let cards = [ 2, 2, 2, 2,
               3, 3, 3, 3,
               4, 4, 4, 4,
@@ -14,9 +14,9 @@ let cards = [ 2, 2, 2, 2,
               'K', 'K', 'K', 'K',
               'A', 'A', 'A', 'A'];
 
-console.log(cards);
-
 let Deck = require('./deck.js');
+
+console.log(Deck);
 
 // The deck.js file must export a single function which returns an array of
 // shuffled card values. There should be
