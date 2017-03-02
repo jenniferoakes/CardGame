@@ -1,30 +1,28 @@
+let mainDeck = require('./deck.js');
 
-//created an array
-let cards = [ 2, 2, 2, 2,
-              3, 3, 3, 3,
-              4, 4, 4, 4,
-              5, 5, 5, 5,
-              6, 6, 6, 6,
-              7, 7, 7, 7,
-              8, 8, 8, 8,
-              9, 9, 9, 9,
-              10, 10, 10, 10,
-              'J', 'J', 'J', 'J',
-              'Q', 'Q', 'Q', 'Q',
-              'K', 'K', 'K', 'K',
-              'A', 'A', 'A', 'A'];
+module.exports = function GameFunction(twoPlayers) {
+  let returnresults = {
+      date: 'MM-DD-YYYY at HH:mm',   // (with the actual date/time of this game)
+      players: [
+        { name: twoPlayers[0], numberOfWins: 0, winRatio: 0 },
+        { name: twoPlayers[1], numberOfWins: 0, winRatio: 0 }
+      ],
+      numberOfTies: 0
+  };
 
-let Deck = require('./deck.js');
+  let deck = mainDeck();
 
-console.log(Deck);
+  for (let i=0; i < 52; i+=2 ) {
 
-// The deck.js file must export a single function which returns an array of
-// shuffled card values. There should be
-// FOUR of each value: 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', and 'A'.
-// Note that you DO NOT need to worry about suits (unless you do Adventure Mode).
-//
-// To export a function, you simply place the function on the module.exports object:
-//
-// module.exports = function buildDeck() { ... };
-//
-// (Note that you may name your function anything you wish.)
+    console.log( deck[i], deck[i+1] );
+      if ( deck[i] > deck[i+1]) {
+        returnresults.players[0].numberOfWins++;
+      } else if ( deck[i] < deck[i+1] ) {
+        returnresults.players[1].numberOfWins++;
+      } else {
+        returnresults.numberOfTies++;
+      }
+  }
+  // console.log("playerone " + returnresults.players[0].numberofWins);
+  return returnresults;
+};
